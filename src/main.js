@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import Confirm from './views/Confirm.vue'
+import Reset from './views/Reset.vue'
 import Login from './views/Login.vue'
 import Signup from './views/Signup.vue'
 import Dashboard from './views/Dashboard.vue'
@@ -84,8 +85,13 @@ const router = new VueRouter({
       }
     },
     {
-      path: '/confirm/:key',
+      path: '/confirm/:token',
       component: Confirm,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/reset/:token',
+      Component: Reset,
       meta: { requiresAuth: true }
     },
     { path: '/', component: Landing }

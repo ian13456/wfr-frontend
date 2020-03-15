@@ -24,6 +24,9 @@
             <a href="/" class="nav-link">About Us</a>
           </li>
           <li class="nav-item mr-4">
+            <a href="/settings" class="nav-link">Settings</a>
+          </li>
+          <li class="nav-item mr-4">
             <a href="/logout" class="nav-link">Log-out</a>
           </li>
         </ul>
@@ -276,19 +279,18 @@ export default {
           this.goal = data.goal_laps
 
           if (!data.email_confirmed) {
-            this.$swal
-              .fire({
-                icon: 'error',
-                title: 'Please confirm your email!',
-                text:
-                  "We just sent you a confirmation email. Please activate account by clicking the link in the email. If you don't get it, check spam or check if your email has been mistyped.",
-                showCloseButton: false,
-                showCancelButton: false,
-                confirmButtonText: 'Back to Home'
-              })
-              .then(() => {
-                this.$router.push('/')
-              })
+            this.$swal.fire({
+              icon: 'error',
+              title: 'Please confirm your email!',
+              text:
+                "We just sent you a confirmation email. Please activate account by clicking the link in the email. If you don't get it, check spam or check if your email has been mistyped.",
+              showCloseButton: false,
+              showCancelButton: false,
+              confirmButtonText: 'Ok, will do.'
+            })
+            // .then(() => {
+            //   this.$router.push('/')
+            // })
           }
         })
         .catch(error => {
@@ -347,8 +349,10 @@ export default {
         this.$swal.fire({
           icon: 'error',
           title: 'Email not confirmed!',
-          text: 'Cannot proceed without email confirmation.'
+          text: 'Sorry! Cannot proceed without email confirmation.'
         })
+
+        return
       }
 
       const flatPledge = formData.flatPledge
@@ -416,6 +420,8 @@ export default {
           title: 'Email not confirmed!',
           text: 'Cannot proceed without email confirmation.'
         })
+
+        return
       }
 
       const sCount = formData['smallShirts']
@@ -452,13 +458,15 @@ export default {
         })
     },
     submitLapsForm({ laps }) {
-      if (!this.emailConfirmed) {
-        this.$swal.fire({
-          icon: 'error',
-          title: 'Email not confirmed!',
-          text: 'Cannot proceed without email confirmation.'
-        })
-      }
+      // if (!this.emailConfirmed) {
+      //   this.$swal.fire({
+      //     icon: 'error',
+      //     title: 'Email not confirmed!',
+      //     text: 'Cannot proceed without email confirmation.'
+      //   })
+
+      //   return
+      // }
 
       this.axios
         .post('user/goal', { laps })

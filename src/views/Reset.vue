@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper" style="background: #303030"></div>
+  <div id="wrapper"></div>
 </template>
 
 <script>
@@ -9,13 +9,14 @@ export default {
   name: 'Confirm',
   mounted() {
     const { token } = this.$route.params
+
     this.axios
-      .post('user/confirm', { token })
+      .post('user/password', { token })
       .then(() => {
         this.$swal
           .fire({
             icon: 'success',
-            title: 'Email successfully confirmed!',
+            title: 'Successfully reset password!',
             allowOutsideClick: false
           })
           .then(() => {

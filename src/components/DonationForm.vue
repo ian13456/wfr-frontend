@@ -19,7 +19,7 @@
       <div class="col-12 col-lg-8" v-if="!eventwide">
         <div class="form-group">
           <input
-            type="text"
+            type="email"
             class="form-control"
             name="pledging"
             v-model="person"
