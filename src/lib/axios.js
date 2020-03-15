@@ -4,8 +4,8 @@ import { getToken } from './getToken'
 const instance = axios.create({
   // baseURL: 'https://enigmatic-coast-79380.herokuapp.com',
   // baseURL: 'https://wfr-backend.herokuapp.com/',
-  // baseURL: 'https://wfr-backend.herokuapp.com/',
-  baseURL: 'http://localhost:4000',
+  baseURL: 'https://wfr-backend.herokuapp.com/',
+  // baseURL: 'http://localhost:4000',
   headers: {
     'Access-Control-Allow-Origin': '*'
   }
