@@ -194,7 +194,7 @@
         <div class="col-12 col-md-6 mt-5">
           <ShirtForm @form-submitted="submitShirtForm"></ShirtForm>
         </div>
-        <div class="col-12 col-md-4 mt-2 align-self-center">
+        <div class="col-12 col-md-4 mt-2 align-self-center" v-if="goal === 0">
           <LapsForm @form-submitted="submitLapsForm"></LapsForm>
         </div>
       </div>

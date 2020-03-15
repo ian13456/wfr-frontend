@@ -1,15 +1,19 @@
 <template>
   <form class="mb-4" id="donation" @submit.prevent="onSubmit">
     <div class="row justify-content-center">
-      <div class="col-12 col-lg-8">
+      <div class="col-12 col-lg-8 custom-pledge-form">
         <h1>Pledge To Others</h1>
-      </div>
-
-      <div class="col-12 col-lg-8 custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="eventwide" />
-        <label class="custom-control-label" for="customCheck1">
-          Eventwide Donation
-        </label>
+        <div>
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="customCheck1"
+            v-model="eventwide"
+          />
+          <label class="custom-control-label" for="customCheck1">
+            Eventwide Donation
+          </label>
+        </div>
       </div>
 
       <div class="col-12 col-lg-8" v-if="!eventwide">
