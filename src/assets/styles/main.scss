@@ -77,6 +77,12 @@ html {
     }
   }
 
+  body#reset,
+  body#confirm {
+    background-color: #303030;
+    font-family: 'Montserrat', sans-serif;
+  }
+
   body#dashboard {
     background-color: #303030;
     font-family: 'Montserrat', sans-serif;

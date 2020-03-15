@@ -24,7 +24,9 @@
             <a href="/" class="nav-link">About Us</a>
           </li>
           <li class="nav-item mr-4">
-            <a href="/settings" class="nav-link">Settings</a>
+            <a v-on:click="resetPassword" class="nav-link" style="cursor: pointer"
+              >Reset Password</a
+            >
           </li>
           <li class="nav-item mr-4">
             <a href="/logout" class="nav-link">Log-out</a>
@@ -322,8 +324,6 @@ export default {
             pledges = pledges.filter(p => p !== eventwide)
           }
 
-          console.log(pledges)
-
           this.pledgeRecievedRows = receives
           this.pledgedToRows = pledges
         })
@@ -336,8 +336,6 @@ export default {
         .then(response => {
           let stuff = JSON.parse(JSON.stringify(response))
           this.tshirtPurchases = stuff.data
-          // this.tshirtPurchases.s_count
-          console.log(this.tshirtPurchases.s_count)
           this.isLoading = false
         })
         .catch(function(error) {
@@ -486,7 +484,50 @@ export default {
             text: error.response.data.message
           })
         })
-      console.log(laps)
+    },
+    resetPassword() {
+      this.$swal
+        .fire({
+          icon: 'info',
+          title: 'Enter your account email',
+          input: 'email',
+          inputAttributes: {
+            autocapitalize: 'off'
+          },
+          showCancelButton: true,
+          confirmButtonText: 'Send',
+          showLoaderOnConfirm: true,
+          preConfirm: () => {
+            this.axios
+              .post('user/reset')
+              .then(() => {
+                return ''
+              })
+              .catch(error => {
+                console.log(error)
+                this.$swal.showValidationMessage(`Request failed: ${error}`)
+              })
+            // return  fetch(`//api.github.com/users/${login}`)
+            //   .then(response => {
+            //     if (!response.ok) {
+            //       throw new Error(response.statusText)
+            //     }
+            //     return response.json()
+            //   })
+            //   .catch(error => {
+            //     this.$swal.showValidationMessage(`Request failed: ${error}`)
+            //   })
+          },
+          allowOutsideClick: () => !this.$swal.isLoading()
+        })
+        .then(({ dismiss }) => {
+          if (!dismiss)
+            this.$swal.fire({
+              icon: 'success',
+              title: `We've sent you an email!`,
+              text: 'Check your inbox for a link to reset your password.'
+            })
+        })
     },
     setInterval() {
       this.refreshing = setInterval(this.getInfo, 1000)

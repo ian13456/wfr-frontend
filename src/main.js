@@ -91,7 +91,7 @@ const router = new VueRouter({
     },
     {
       path: '/reset/:token',
-      Component: Reset,
+      component: Reset,
       meta: { requiresAuth: true }
     },
     { path: '/', component: Landing }
@@ -142,7 +142,6 @@ router.beforeEach(function(to, from, next) {
   //   }
   // }
 
-  console.log(to.path)
   if (to.path == '/logout') {
     Vue.$cookies.remove('jwt')
     next({

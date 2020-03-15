@@ -7,6 +7,9 @@
 
 export default {
   name: 'Confirm',
+  beforeCreate: () => {
+    document.body.id = 'confirm'
+  },
   mounted() {
     const { token } = this.$route.params
     this.axios

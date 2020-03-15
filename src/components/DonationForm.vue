@@ -83,8 +83,7 @@ export default {
     }
   },
   methods: {
-    onSubmit(shit) {
-      console.log(shit)
+    onSubmit() {
       this.$swal
         .fire({
           title: 'Confirmation',
