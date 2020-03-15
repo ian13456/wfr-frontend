@@ -47,7 +47,7 @@ export default {
         .catch(error => {
           this.$swal.fire({
             icon: 'error',
-            title: 'Your email or password is incorrect',
+            title: 'Something went wrong...',
             text: error.response.data.message,
             footer: '<a href="/signup">Don\'t have an account? Sign up here</a>'
           })
