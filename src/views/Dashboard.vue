@@ -225,7 +225,7 @@ export default {
       name: 'Loading...',
       email: 'Loading...',
       ID: 'Loading...',
-      status: 'Running',
+      status: 'Loading...',
       goal: 'Loading',
       emailConfirmed: false,
       tshirtPurchases: {},
@@ -279,6 +279,8 @@ export default {
           this.email = data.email
           this.ID = data.school_id
           this.goal = data.goal_laps
+
+          this.status = this.goal > 0 ? 'Pledger + Runner' : 'Runner'
 
           if (!data.email_confirmed) {
             this.$swal.fire({
@@ -388,7 +390,9 @@ export default {
               text: response.data.message
             })
 
-            const existing = this.pledgedToRows.find(pledge => pledge.pledged_to === person)
+            const existing = this.pledgedToRows.find(
+              pledge => pledge.pledged_to === person
+            )
 
             if (existing) {
               existing.flat_donation = flatPledge
@@ -443,9 +447,12 @@ export default {
             text: response.data.message
           })
 
-          this.tshirtPurchases.s_count = Number(this.tshirtPurchases.s_count) + Number(sCount)
-          this.tshirtPurchases.m_count = Number(this.tshirtPurchases.m_count) + Number(mCount)
-          this.tshirtPurchases.l_count = Number(this.tshirtPurchases.l_count) + Number(lCount)
+          this.tshirtPurchases.s_count =
+            Number(this.tshirtPurchases.s_count) + Number(sCount)
+          this.tshirtPurchases.m_count =
+            Number(this.tshirtPurchases.m_count) + Number(mCount)
+          this.tshirtPurchases.l_count =
+            Number(this.tshirtPurchases.l_count) + Number(lCount)
         })
         .catch(error => {
           this.$swal.fire({

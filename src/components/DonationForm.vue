@@ -55,10 +55,15 @@
         </div>
       </div>
       <div class="col-12 col-lg-8 custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="customCheck2" required="true" />
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="customCheck2"
+          required="true"
+        />
         <label class="custom-control-label" for="customCheck2">
-          I agree that money not collected in cash will be deducted from my ID Card, and the section
-          CANNOT be modified after the deadline
+          I agree that money not collected in cash will be deducted from my ID Card, and
+          the section CANNOT be modified after the deadline
         </label>
       </div>
       <div class="col-12 col-lg-8">
