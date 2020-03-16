@@ -9180,9 +9180,9 @@ vue-router@^3.1.3:
   integrity sha512-GYhn2ynaZlysZMkFE5oCHRUTqE8BWs/a9YbKpNLi0i7xD6KG1EzDqpHQmv1F5gXjr8kL5iIVS8EOtRaVUEXTqA==
 
 vue-select@^3.4.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-3.9.0.tgz#61f0c88e732d7eaef62c033cdb71e3824b10d7af"
-  integrity sha512-g78EBwdw3j12h/YGetXOgqmDQ1VhaQ66+2u3i3fRQojYci4sIt4xQgtpDkR7TzJrHxwhcr1Dm76StYbXlpVY3Q==
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-3.9.1.tgz#00ed379fcad99eff97eb187341837f251d603707"
+  integrity sha512-s6CUcX8O8fgi7ArOvF6Si80kKvImxqPOovTj77peiqMxsuZBGJey4w5/SUy1Hy9P0xU3xELWHkHvyetdQhhkqQ==
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.2"
