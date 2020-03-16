@@ -280,7 +280,7 @@ export default {
           this.ID = data.school_id
           this.goal = data.goal_laps
 
-          this.status = this.goal > 0 ? 'Pledger + Runner' : 'Runner'
+          this.status = this.goal > 0 ? 'Pledger + Runner' : 'Pledger'
 
           if (!data.email_confirmed) {
             this.$swal.fire({
