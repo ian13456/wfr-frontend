@@ -21,6 +21,7 @@ export default {
         input: 'password',
         allowOutsideClick: false,
         allowEscapeKey: false,
+        showLoaderOnConfirm: true,
         inputValidator: value => {
           return (!value || value.length < 8) && 'Password must be over 8 characters'
         },
@@ -31,11 +32,13 @@ export default {
             input: 'password',
             allowOutsideClick: false,
             allowEscapeKey: false,
+            showLoaderOnConfirm: true,
             inputValidator: v => {
               return v !== value && 'Passwords do not match.'
             },
             preConfirm: final => {
               console.log(final)
+              this.$swal.showLoading()
               this.axios
                 .post('user/password', { token, password: final })
                 .then(() => {

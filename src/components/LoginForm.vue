@@ -18,7 +18,7 @@
       <span>
         Don't have an account?
         <a href="/signup">Sign up</a> here.
-        <a v-on:click="forgotPassword">Forgot your password?</a>
+        <a v-on:click="forgotPassword" style="cursor: pointer">Forgot your password?</a>
       </span>
     </div>
     <button type="submit" class="btn btn-primary w-100">Login</button>
@@ -54,7 +54,7 @@ export default {
           confirmButtonText: 'Send',
           showLoaderOnConfirm: true,
           preConfirm: value => {
-            console.log(value)
+            this.$swal.showLoading()
             this.axios
               .post('user/reset', { email: value })
               .then(() => {

@@ -91,8 +91,8 @@ const router = new VueRouter({
     },
     {
       path: '/reset/:token',
-      component: Reset,
-      meta: { requiresAuth: true }
+      component: Reset
+      // meta: { requiresAuth: true }
     },
     { path: '/', component: Landing }
   ]
