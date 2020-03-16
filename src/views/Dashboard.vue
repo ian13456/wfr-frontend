@@ -197,7 +197,10 @@
         </div>
 
         <div class="col-12 col-md-6 mt-5">
-          <ShirtForm @form-submitted="submitShirtForm"></ShirtForm>
+          <ShirtForm
+            :isEdit="getTshirtSum() > 0"
+            @form-submitted="submitShirtForm"
+          ></ShirtForm>
         </div>
         <div class="col-12 col-md-4 mt-2 align-self-center" v-if="goal === 0">
           <LapsForm @form-submitted="submitLapsForm"></LapsForm>
@@ -248,6 +251,13 @@ export default {
     LapsForm
   },
   methods: {
+    getTshirtSum() {
+      return (
+        Number(this.tshirtPurchases.s_count) +
+        Number(this.tshirtPurchases.m_count) +
+        Number(this.tshirtPurchases.l_count)
+      )
+    },
     pledgeToTotal() {
       let values = { singleTotal: 0, lapTotal: 0 }
       this.pledgedToRows.forEach(row => {
@@ -447,12 +457,9 @@ export default {
             text: response.data.message
           })
 
-          this.tshirtPurchases.s_count =
-            Number(this.tshirtPurchases.s_count) + Number(sCount)
-          this.tshirtPurchases.m_count =
-            Number(this.tshirtPurchases.m_count) + Number(mCount)
-          this.tshirtPurchases.l_count =
-            Number(this.tshirtPurchases.l_count) + Number(lCount)
+          this.tshirtPurchases.s_count = Number(sCount)
+          this.tshirtPurchases.m_count = Number(mCount)
+          this.tshirtPurchases.l_count = Number(lCount)
         })
         .catch(error => {
           this.$swal.fire({
