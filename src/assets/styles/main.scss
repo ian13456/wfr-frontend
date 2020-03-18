@@ -84,6 +84,21 @@ html {
     font-family: 'Montserrat', sans-serif;
   }
 
+  body#admin {
+    #form-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #data-table {
+      width: 80vw;
+      max-height: 30vh;
+      overflow: auto;
+    }
+  }
+
   body#dashboard {
     background-color: #303030;
     font-family: 'Montserrat', sans-serif;

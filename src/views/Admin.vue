@@ -5,61 +5,91 @@
         <img src="../assets/images/logo.png" alt="Logo" />
       </a>
     </div>
-    <div>
-      <h3>
-        <h3>Search For User</h3>
-        <AdminForm @form-submitted="submitForm"></AdminForm>
-      </h3>
+    <div id="form-wrapper">
+      <h1>Search For User</h1>
+      <AdminForm @form-submitted="submitForm"></AdminForm>
+      <b-spinner
+        variant="primary"
+        type="grow"
+        label="Spinning"
+        v-if="loading"
+      ></b-spinner>
+      <div id="data-table">
+        <b-table striped dark small hover :items="users"></b-table>
+      </div>
     </div>
-    <ul id="list">
-      <li v-for="{ email, email_confirmed, goal_laps, id, is_admin, username } in users" :key="id">
-        <table>
-          <thead>
-            <tr>
-              <th>Field</th>
-              <th>Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Full Name</td>
-              <td>{{ username }}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{{ email }}</td>
-            </tr>
-            <tr>
-              <td>Email Confirmed</td>
-              <td>{{ email_confirmed }}</td>
-            </tr>
-            <tr>
-              <td>Goal Laps</td>
-              <td>{{ goal_laps }}</td>
-            </tr>
-            <tr>
-              <td>Is Admin</td>
-              <td>{{ is_admin }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
 import AdminForm from '../components/AdminForm'
+// <ul id="list">
+//   <li
+//     v-for="{ email, email_confirmed, goal_laps, id, is_admin, username } in users"
+//     :key="id"
+//   >
+//     <table>
+//       <thead>
+//         <tr>
+//           <th>Field</th>
+//           <th>Value</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         <tr>
+//           <td>Full Name</td>
+//           <td>{{ username }}</td>
+//         </tr>
+//         <tr>
+//           <td>Email</td>
+//           <td>{{ email }}</td>
+//         </tr>
+//         <tr>
+//           <td>Email Confirmed</td>
+//           <td>{{ email_confirmed }}</td>
+//         </tr>
+//         <tr>
+//           <td>Goal Laps</td>
+//           <td>{{ goal_laps }}</td>
+//         </tr>
+//         <tr>
+//           <td>Is Admin</td>
+//           <td>{{ is_admin }}</td>
+//         </tr>
+//       </tbody>
+//     </table>
+//   </li>
+// </ul>
 
 export default {
   name: 'Admin',
   components: { AdminForm },
-  data: () => ({ users: null }),
+  data: () => ({ users: null, loading: false }),
+  mounted() {
+    console.log('damn')
+  },
+  beforeCreate: () => {
+    document.body.id = 'admin'
+  },
   methods: {
+    clean(obj) {
+      for (let propName in obj) {
+        if (obj[propName] === null || obj[propName] === undefined) {
+          delete obj[propName]
+        }
+      }
+      return obj
+    },
     submitForm({ query }) {
       console.log(query)
+      this.loading = true
       this.axios.get('admin/users', { params: { query: query } }).then(({ data }) => {
-        this.users = data.users.map(user => JSON.parse(user))
+        this.users = data.users.map(user => {
+          const cleaned = this.clean(JSON.parse(user))
+          delete cleaned['password']
+          return cleaned
+        })
+        this.loading = false
         console.log(this.users)
       })
     }

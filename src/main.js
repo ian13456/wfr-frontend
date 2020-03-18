@@ -16,10 +16,24 @@ import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import Vuex from 'vuex'
 import { axios } from './lib'
+import {
+  BootstrapVue,
+  IconsPlugin,
+  CardPlugin,
+  TablePlugin,
+  SpinnerPlugin
+} from 'bootstrap-vue'
 import 'js-autocomplete'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+Vue.use(CardPlugin)
+Vue.use(TablePlugin)
+Vue.use(SpinnerPlugin)
 Vue.use(VueSweetalert2)
 Vue.use(VueAxios, axios)
 Vue.use(Vuelidate)
@@ -79,8 +93,8 @@ const router = new VueRouter({
       component: Admin,
       meta: { requiresAuth: true },
       beforeEnter: async (to, from, next) => {
-        const data = await axios.get('/user/me')
-        if (data.is_admin) next()
+        const { data } = await axios.get('/user/me')
+        if (JSON.parse(data).is_admin) next()
         else next('/dashboard')
       }
     },
